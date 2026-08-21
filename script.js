@@ -190,9 +190,22 @@ window.addEventListener(
 updateActiveNavigation();
 
 
+
 /* =========================================================
-   PHOTO VIEWER
+   VIP PHOTO VIEWER / GALLERY
 ========================================================= */
+
+const galleryPhotos = [
+    "photo-1.jpg",
+    "photo-2.jpg",
+    "photo-3.jpg",
+    "photo-4.jpg",
+    "photo-5.jpg",
+    "photo-6.jpg"
+];
+
+let currentPhotoIndex = 0;
+
 
 function openPhoto(imageSource) {
 
@@ -202,17 +215,76 @@ function openPhoto(imageSource) {
     const fullPhoto =
         document.getElementById("fullPhoto");
 
-
     if (!viewer || !fullPhoto) {
         return;
     }
 
+    currentPhotoIndex =
+        galleryPhotos.indexOf(imageSource);
 
-    fullPhoto.src = imageSource;
+    if (currentPhotoIndex < 0) {
+        currentPhotoIndex = 0;
+    }
+
+    showPhoto(currentPhotoIndex);
 
     viewer.classList.add("active");
 
     document.body.classList.add("no-scroll");
+}
+
+
+function showPhoto(index) {
+
+    const fullPhoto =
+        document.getElementById("fullPhoto");
+
+    const photoCounter =
+        document.getElementById("photoCounter");
+
+    if (!fullPhoto) {
+        return;
+    }
+
+    currentPhotoIndex =
+        (index + galleryPhotos.length) %
+        galleryPhotos.length;
+
+    fullPhoto.src =
+        galleryPhotos[currentPhotoIndex];
+
+    if (photoCounter) {
+
+        photoCounter.textContent =
+            `${currentPhotoIndex + 1} / ${galleryPhotos.length}`;
+
+    }
+
+}
+
+
+function nextPhoto(event) {
+
+    if (event) {
+        event.stopPropagation();
+    }
+
+    showPhoto(
+        currentPhotoIndex + 1
+    );
+
+}
+
+
+function previousPhoto(event) {
+
+    if (event) {
+        event.stopPropagation();
+    }
+
+    showPhoto(
+        currentPhotoIndex - 1
+    );
 
 }
 
@@ -220,40 +292,134 @@ function openPhoto(imageSource) {
 function closePhoto(event) {
 
     if (event) {
-
         event.stopPropagation();
-
     }
-
 
     const viewer =
         document.getElementById("photoViewer");
-
 
     if (!viewer) {
         return;
     }
 
-
     viewer.classList.remove("active");
 
     document.body.classList.remove("no-scroll");
 
+}
 
-    setTimeout(function () {
 
-        const fullPhoto =
-            document.getElementById("fullPhoto");
+/* =========================================================
+   KEYBOARD CONTROLS
+========================================================= */
 
-        if (fullPhoto) {
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-            fullPhoto.src = "";
+        const viewer =
+            document.getElementById("photoViewer");
+
+        if (
+            !viewer ||
+            !viewer.classList.contains("active")
+        ) {
+            return;
+        }
+
+
+        if (event.key === "Escape") {
+
+            closePhoto();
 
         }
 
-    }, 300);
 
-}
+        if (event.key === "ArrowRight") {
+
+            nextPhoto();
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            previousPhoto();
+
+        }
+
+    }
+);
+
+
+
+
+
+// old d
+/* =========================================================
+   PHOTO VIEWER
+========================================================= */
+
+// function openPhoto(imageSource) {
+
+//     const viewer =
+//         document.getElementById("photoViewer");
+
+//     const fullPhoto =
+//         document.getElementById("fullPhoto");
+
+
+//     if (!viewer || !fullPhoto) {
+//         return;
+//     }
+
+
+//     fullPhoto.src = imageSource;
+
+//     viewer.classList.add("active");
+
+//     document.body.classList.add("no-scroll");
+
+// }
+
+
+// function closePhoto(event) {
+
+//     if (event) {
+
+//         event.stopPropagation();
+
+//     }
+
+
+//     const viewer =
+//         document.getElementById("photoViewer");
+
+
+//     if (!viewer) {
+//         return;
+//     }
+
+
+//     viewer.classList.remove("active");
+
+//     document.body.classList.remove("no-scroll");
+
+
+//     setTimeout(function () {
+
+//         const fullPhoto =
+//             document.getElementById("fullPhoto");
+
+//         if (fullPhoto) {
+
+//             fullPhoto.src = "";
+
+//         }
+
+//     }, 300);
+
+// }
 
 
 /* =========================================================
