@@ -439,30 +439,23 @@ if ("IntersectionObserver" in window) {
 
 
 /* =========================================================
-   VIDEO BUTTON
+   LASHKARS BOYZ6 OFFICIAL
+   REAL YOUTUBE VIDEOS
 ========================================================= */
 
+const youtubeVideos = [
+    "https://youtube.com/shorts/7ezbw9vOAPM",
+    "https://youtu.be/kXW4XAIASXo",
+    "https://youtube.com/shorts/agCsvt6iu9Y",
+    "https://youtube.com/shorts/zqfyTycfQHU"
+];
+
+
 const playButtons =
-    document.querySelectorAll(
-        ".play-button"
-    );
+    document.querySelectorAll(".play-button");
 
 
-/*
-   IMPORTANT:
-
-   Abhi tumne specific YouTube video URLs
-   provide nahi kiye hain.
-
-   Isliye buttons tumhare official YouTube
-   channel par jayenge.
-
-   Baad mein har card ko exact video se
-   connect kar sakte hain.
-*/
-
-
-playButtons.forEach(function (button) {
+playButtons.forEach(function (button, index) {
 
     button.addEventListener(
         "click",
@@ -472,16 +465,82 @@ playButtons.forEach(function (button) {
 
             event.stopPropagation();
 
-            window.open(
-                socialLinks.youtube,
-                "_blank",
-                "noopener,noreferrer"
-            );
+
+            const video =
+                youtubeVideos[index];
+
+
+            if (video) {
+
+                window.open(
+                    video,
+                    "_blank",
+                    "noopener,noreferrer"
+                );
+
+            } else {
+
+                window.open(
+                    socialLinks.youtube,
+                    "_blank",
+                    "noopener,noreferrer"
+                );
+
+            }
 
         }
     );
 
 });
+
+
+
+
+// old d
+// /* =========================================================
+//    VIDEO BUTTON
+// ========================================================= */
+
+// const playButtons =
+//     document.querySelectorAll(
+//         ".play-button"
+//     );
+
+
+// /*
+//    IMPORTANT:
+
+//    Abhi tumne specific YouTube video URLs
+//    provide nahi kiye hain.
+
+//    Isliye buttons tumhare official YouTube
+//    channel par jayenge.
+
+//    Baad mein har card ko exact video se
+//    connect kar sakte hain.
+// */
+
+
+// playButtons.forEach(function (button) {
+
+//     button.addEventListener(
+//         "click",
+//         function (event) {
+
+//             event.preventDefault();
+
+//             event.stopPropagation();
+
+//             window.open(
+//                 socialLinks.youtube,
+//                 "_blank",
+//                 "noopener,noreferrer"
+//             );
+
+//         }
+//     );
+
+// });
 
 
 /* =========================================================
