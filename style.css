@@ -1,1 +1,362 @@
+/* =========================================
+   VIP DEVELOPER FOOTER
+========================================= */
 
+.vip-footer {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255, 25, 25, 0.16), transparent 38%),
+        #030303;
+    border-top: 1px solid rgba(255, 30, 30, 0.35);
+    padding: 75px 20px 25px;
+    text-align: center;
+}
+
+/* Moving background glow */
+
+.vip-footer::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    left: 50%;
+    top: -300px;
+    transform: translateX(-50%);
+    background: radial-gradient(
+        circle,
+        rgba(255, 20, 20, 0.20),
+        transparent 65%
+    );
+    animation: developerGlow 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes developerGlow {
+    0%, 100% {
+        opacity: .35;
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        opacity: .8;
+        transform: translateX(-50%) scale(1.25);
+    }
+}
+
+/* Developer card */
+
+.developer-card {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 25px;
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,0,0,.025)
+        );
+
+    border: 1px solid rgba(255, 35, 35, .28);
+
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, .08),
+        inset 0 0 30px rgba(255, 0, 0, .025);
+
+    backdrop-filter: blur(12px);
+
+    animation: cardFloat 5s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* Top animated line */
+
+.developer-line {
+    width: 100px;
+    height: 3px;
+    margin: 0 auto 22px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ff1717,
+        #fff,
+        #ff1717,
+        transparent
+    );
+
+    background-size: 200% 100%;
+    animation: lineMove 2s linear infinite;
+
+    box-shadow: 0 0 15px rgba(255, 20, 20, .8);
+}
+
+@keyframes lineMove {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: -200% 0;
+    }
+}
+
+/* Small heading */
+
+.developer-label {
+    margin: 0 0 12px;
+
+    color: #999;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+/* Developer name */
+
+.developer-name {
+    position: relative;
+    display: inline-block;
+
+    margin: 0;
+
+    font-size: clamp(32px, 6vw, 62px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+
+    color: #fff;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.12),
+        0 0 30px rgba(255,0,0,.15);
+
+    background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 35%,
+        #ff2525 50%,
+        #ffffff 65%,
+        #ffffff 100%
+    );
+
+    background-size: 250% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: nameShine 4s linear infinite;
+}
+
+.developer-name span {
+    color: #ff2020;
+    -webkit-text-fill-color: #ff2020;
+}
+
+@keyframes nameShine {
+    0% {
+        background-position: 250% center;
+    }
+
+    100% {
+        background-position: -250% center;
+    }
+}
+
+/* Developer badge */
+
+.developer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: 20px;
+    padding: 9px 17px;
+
+    border-radius: 50px;
+
+    background: rgba(255, 20, 20, .08);
+    border: 1px solid rgba(255, 30, 30, .35);
+
+    color: #eee;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 0 15px rgba(255, 0, 0, .08);
+
+    transition: .3s ease;
+}
+
+.developer-badge:hover {
+    transform: translateY(-3px) scale(1.04);
+
+    border-color: #ff2222;
+
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, .25);
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #19ff70;
+
+    box-shadow:
+        0 0 8px #19ff70;
+
+    animation: statusPulse 1.5s infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .45;
+        transform: scale(.7);
+    }
+}
+
+/* Developer tagline */
+
+.developer-tagline {
+    margin: 20px 0 0;
+
+    color: #777;
+
+    font-size: 13px;
+    letter-spacing: .5px;
+}
+
+/* Decorative glow */
+
+.developer-glow {
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 20, 20, .07),
+        transparent 70%
+    );
+
+    pointer-events: none;
+
+    animation: innerGlow 3s ease-in-out infinite;
+}
+
+@keyframes innerGlow {
+    0%, 100% {
+        opacity: .4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Footer bottom */
+
+.footer-bottom {
+    position: relative;
+
+    max-width: 1100px;
+    margin: 45px auto 0;
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255,255,255,.08);
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    color: #666;
+    font-size: 12px;
+}
+
+.footer-bottom strong {
+    color: #aaa;
+}
+
+.made-with span {
+    color: #ff2222;
+    font-size: 16px;
+
+    animation: heartBeat 1.3s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.35);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .vip-footer {
+        padding: 55px 15px 20px;
+    }
+
+    .developer-card {
+        padding: 35px 15px;
+        border-radius: 18px;
+    }
+
+    .developer-label {
+        font-size: 9px;
+        letter-spacing: 2.5px;
+    }
+
+    .developer-name {
+        font-size: 31px;
+        letter-spacing: 1px;
+    }
+
+    .developer-tagline {
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .footer-bottom {
+        justify-content: center;
+        text-align: center;
+        line-height: 1.7;
+    }
+}
