@@ -496,51 +496,143 @@ playButtons.forEach(function (button, index) {
 
 
 
-// old d
-// /* =========================================================
-//    VIDEO BUTTON
-// ========================================================= */
+/* =========================================================
+   AUTOMATIC YOUTUBE VIDEO SYSTEM
+========================================================= */
 
-// const playButtons =
-//     document.querySelectorAll(
-//         ".play-button"
-//     );
-
-
-// /*
-//    IMPORTANT:
-
-//    Abhi tumne specific YouTube video URLs
-//    provide nahi kiye hain.
-
-//    Isliye buttons tumhare official YouTube
-//    channel par jayenge.
-
-//    Baad mein har card ko exact video se
-//    connect kar sakte hain.
-// */
+const youtubeVideos = [
+    "https://youtube.com/shorts/7ezbw9vOAPM",
+    "https://youtu.be/kXW4XAIASXo",
+    "https://youtube.com/shorts/agCsvt6iu9Y",
+    "https://youtube.com/shorts/zqfyTycfQHU"
+];
 
 
-// playButtons.forEach(function (button) {
+function createVideoCards() {
 
-//     button.addEventListener(
-//         "click",
-//         function (event) {
+    const videoGrid =
+        document.getElementById("videoGrid");
 
-//             event.preventDefault();
+    if (!videoGrid) {
+        return;
+    }
 
-//             event.stopPropagation();
 
-//             window.open(
-//                 socialLinks.youtube,
-//                 "_blank",
-//                 "noopener,noreferrer"
-//             );
+    videoGrid.innerHTML = "";
 
-//         }
-//     );
 
-// });
+    youtubeVideos.forEach(function (videoURL, index) {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "video-card";
+
+
+        const thumbnail =
+            document.createElement("div");
+
+        thumbnail.className =
+            "video-thumbnail";
+
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            "photo-" +
+            ((index % 6) + 1) +
+            ".jpg";
+
+        image.alt =
+            "LASHKARS BOYZ6 Video " +
+            (index + 1);
+
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "play-button";
+
+        button.innerHTML =
+            '<i class="fa-solid fa-play"></i>';
+
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                window.open(
+                    videoURL,
+                    "_blank",
+                    "noopener,noreferrer"
+                );
+
+            }
+        );
+
+
+        const duration =
+            document.createElement("span");
+
+        duration.className =
+            "video-duration";
+
+        duration.textContent =
+            "WATCH";
+
+
+        thumbnail.appendChild(image);
+
+        thumbnail.appendChild(button);
+
+        thumbnail.appendChild(duration);
+
+
+        const info =
+            document.createElement("div");
+
+        info.className =
+            "video-info";
+
+
+        const title =
+            document.createElement("h3");
+
+        title.textContent =
+            "LASHKARS BOYZ6 — Video " +
+            String(index + 1).padStart(2, "0");
+
+
+        const description =
+            document.createElement("p");
+
+        description.textContent =
+            "Latest LASHKARS BOYZ6 entertainment video";
+
+
+        info.appendChild(title);
+
+        info.appendChild(description);
+
+
+        card.appendChild(thumbnail);
+
+        card.appendChild(info);
+
+
+        videoGrid.appendChild(card);
+
+    });
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    createVideoCards
+);
 
 
 /* =========================================================
