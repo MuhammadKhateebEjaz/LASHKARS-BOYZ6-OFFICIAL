@@ -41,18 +41,81 @@ const WHATSAPP_NUMBER = "923496550742";
    FUTURE: SIRF YAHAN NEW VIDEO LINK ADD KARNA
 ========================================================= */
 
-const youtubeVideos = [
+/* =========================================================
+   LATEST CONTENT — ALL SOCIAL MEDIA
+   FUTURE: SIRF YAHAN NEW LINK ADD KARNA
+========================================================= */
 
-    "https://youtube.com/shorts/7ezbw9vOAPM",
+const latestContent = [
 
-    "https://youtu.be/kXW4XAIASXo",
+    {
+        platform: "youtube",
+        url: "https://youtube.com/shorts/7ezbw9vOAPM",
+        title: "LASHKARS BOYZ6 — YouTube Short"
+    },
 
-    "https://youtube.com/shorts/agCsvt6iu9Y",
+    {
+        platform: "youtube",
+        url: "https://youtu.be/kXW4XAIASXo",
+        title: "LASHKARS BOYZ6 — Latest YouTube Video"
+    },
 
-    "https://youtube.com/shorts/zqfyTycfQHU",
-   
-     "https://www.youtube.com/shorts/zqfyTycfQHU",
-   
+    {
+        platform: "youtube",
+        url: "https://youtube.com/shorts/agCsvt6iu9Y",
+        title: "LASHKARS BOYZ6 — YouTube Short"
+    },
+
+    {
+        platform: "youtube",
+        url: "https://youtube.com/shorts/zqfyTycfQHU",
+        title: "LASHKARS BOYZ6 — YouTube Short"
+    },
+
+    /*
+    ============================================
+    FUTURE LINKS — EXAMPLES
+    ============================================
+
+    {
+        platform: "tiktok",
+        url: "YOUR_TIKTOK_VIDEO_LINK",
+        title: "LASHKARS BOYZ6 — TikTok"
+    },
+
+    {
+        platform: "instagram",
+        url: "YOUR_INSTAGRAM_REEL_LINK",
+        title: "LASHKARS BOYZ6 — Instagram Reel"
+    },
+
+    {
+        platform: "facebook",
+        url: "YOUR_FACEBOOK_VIDEO_LINK",
+        title: "LASHKARS BOYZ6 — Facebook Video"
+    },
+
+    {
+        platform: "x",
+        url: "YOUR_X_VIDEO_LINK",
+        title: "LASHKARS BOYZ6 — X Video"
+    },
+
+    {
+        platform: "linkedin",
+        url: "YOUR_LINKEDIN_VIDEO_LINK",
+        title: "LASHKARS BOYZ6 — LinkedIn"
+    },
+
+    {
+        platform: "threads",
+        url: "YOUR_THREADS_LINK",
+        title: "LASHKARS BOYZ6 — Threads"
+    }
+
+    ============================================
+    */
+
 ];
 
 
@@ -518,6 +581,48 @@ function getYouTubeVideoId(url) {
 }
 
 
+/* =========================================================
+   AUTOMATIC LATEST CONTENT SYSTEM
+========================================================= */
+
+function getYouTubeVideoId(url) {
+
+    try {
+
+        const parsedURL = new URL(url);
+
+        if (parsedURL.hostname === "youtu.be") {
+
+            return parsedURL.pathname
+                .split("/")
+                .filter(Boolean)[0];
+
+        }
+
+        if (parsedURL.pathname.startsWith("/shorts/")) {
+
+            return parsedURL.pathname
+                .split("/")[2];
+
+        }
+
+        if (parsedURL.searchParams.has("v")) {
+
+            return parsedURL.searchParams.get("v");
+
+        }
+
+        return null;
+
+    } catch (error) {
+
+        return null;
+
+    }
+
+}
+
+
 function createVideoCards() {
 
     const videoGrid =
@@ -529,14 +634,8 @@ function createVideoCards() {
 
     videoGrid.innerHTML = "";
 
-    youtubeVideos.forEach(function (videoURL, index) {
 
-        const videoId =
-            getYouTubeVideoId(videoURL);
-
-        if (!videoId) {
-            return;
-        }
+    latestContent.forEach(function (content, index) {
 
         const card =
             document.createElement("article");
@@ -555,20 +654,55 @@ function createVideoCards() {
             document.createElement("img");
 
 
-        /* REAL YOUTUBE THUMBNAIL */
+        /*
+        ============================================
+        YOUTUBE
+        ============================================
+        */
 
-        image.src =
-            "https://img.youtube.com/vi/" +
-            videoId +
-            "/maxresdefault.jpg";
+        if (content.platform === "youtube") {
+
+            const videoId =
+                getYouTubeVideoId(content.url);
+
+            if (videoId) {
+
+                image.src =
+                    "https://img.youtube.com/vi/" +
+                    videoId +
+                    "/maxresdefault.jpg";
+
+            }
+
+        }
+
+
+        /*
+        ============================================
+        OTHER SOCIAL MEDIA
+        ============================================
+        */
+
+        else {
+
+            image.src =
+                "lashkars-photos.png";
+
+        }
 
 
         image.alt =
-            "LASHKARS BOYZ6 Video " +
-            (index + 1);
+            content.title;
 
-        image.loading = "lazy";
+        image.loading =
+            "lazy";
 
+
+        /*
+        ============================================
+        PLAY / OPEN BUTTON
+        ============================================
+        */
 
         const button =
             document.createElement("button");
@@ -576,7 +710,9 @@ function createVideoCards() {
         button.className =
             "play-button";
 
-        button.type = "button";
+        button.type =
+            "button";
+
 
         button.innerHTML =
             '<i class="fa-solid fa-play"></i>';
@@ -590,8 +726,9 @@ function createVideoCards() {
 
                 event.stopPropagation();
 
+
                 window.open(
-                    videoURL,
+                    content.url,
                     "_blank",
                     "noopener,noreferrer"
                 );
@@ -600,22 +737,61 @@ function createVideoCards() {
         );
 
 
-        const duration =
+        /*
+        ============================================
+        PLATFORM LABEL
+        ============================================
+        */
+
+        const platformLabel =
             document.createElement("span");
 
-        duration.className =
+        platformLabel.className =
             "video-duration";
 
-        duration.textContent =
+
+        const platformNames = {
+
+            youtube: "YOUTUBE",
+
+            tiktok: "TIKTOK",
+
+            instagram: "INSTAGRAM",
+
+            facebook: "FACEBOOK",
+
+            x: "X",
+
+            linkedin: "LINKEDIN",
+
+            threads: "THREADS"
+
+        };
+
+
+        platformLabel.textContent =
+            platformNames[content.platform] ||
             "WATCH";
 
+
+        /*
+        ============================================
+        BUILD THUMBNAIL
+        ============================================
+        */
 
         thumbnail.appendChild(image);
 
         thumbnail.appendChild(button);
 
-        thumbnail.appendChild(duration);
+        thumbnail.appendChild(platformLabel);
 
+
+        /*
+        ============================================
+        VIDEO INFO
+        ============================================
+        */
 
         const info =
             document.createElement("div");
@@ -628,15 +804,14 @@ function createVideoCards() {
             document.createElement("h3");
 
         title.textContent =
-            "LASHKARS BOYZ6 — Video " +
-            String(index + 1).padStart(2, "0");
+            content.title;
 
 
         const description =
             document.createElement("p");
 
         description.textContent =
-            "Latest LASHKARS BOYZ6 entertainment video";
+            "Latest LASHKARS BOYZ6 content";
 
 
         info.appendChild(title);
@@ -644,10 +819,15 @@ function createVideoCards() {
         info.appendChild(description);
 
 
+        /*
+        ============================================
+        FINAL CARD
+        ============================================
+        */
+
         card.appendChild(thumbnail);
 
         card.appendChild(info);
-
 
         videoGrid.appendChild(card);
 
