@@ -545,46 +545,299 @@ document.addEventListener(
    AUTOMATIC YOUTUBE VIDEO SYSTEM
 ========================================================= */
 
-function getYouTubeVideoId(url) {
+// function getYouTubeVideoId(url) {
 
-    try {
+//     try {
 
-        const parsedURL = new URL(url);
+//         const parsedURL = new URL(url);
 
-        if (parsedURL.hostname === "youtu.be") {
+//         if (parsedURL.hostname === "youtu.be") {
 
-            return parsedURL.pathname
-                .split("/")
-                .filter(Boolean)[0];
+//             return parsedURL.pathname
+//                 .split("/")
+//                 .filter(Boolean)[0];
 
-        }
+//         }
 
-        if (parsedURL.pathname.startsWith("/shorts/")) {
+//         if (parsedURL.pathname.startsWith("/shorts/")) {
 
-            return parsedURL.pathname
-                .split("/")[2];
+//             return parsedURL.pathname
+//                 .split("/")[2];
 
-        }
+//         }
 
-        if (parsedURL.searchParams.has("v")) {
+//         if (parsedURL.searchParams.has("v")) {
 
-            return parsedURL.searchParams.get("v");
+//             return parsedURL.searchParams.get("v");
 
-        }
+//         }
 
-        return null;
+//         return null;
 
-    } catch (error) {
+//     } catch (error) {
 
-        console.error("Invalid YouTube URL:", url);
+//         console.error("Invalid YouTube URL:", url);
 
-        return null;
+//         return null;
 
-    }
+//     }
 
-}
+// }
 
 
+// /* =========================================================
+//    AUTOMATIC LATEST CONTENT SYSTEM
+// ========================================================= */
+
+// function getYouTubeVideoId(url) {
+
+//     try {
+
+//         const parsedURL = new URL(url);
+
+//         if (parsedURL.hostname === "youtu.be") {
+
+//             return parsedURL.pathname
+//                 .split("/")
+//                 .filter(Boolean)[0];
+
+//         }
+
+//         if (parsedURL.pathname.startsWith("/shorts/")) {
+
+//             return parsedURL.pathname
+//                 .split("/")[2];
+
+//         }
+
+//         if (parsedURL.searchParams.has("v")) {
+
+//             return parsedURL.searchParams.get("v");
+
+//         }
+
+//         return null;
+
+//     } catch (error) {
+
+//         return null;
+
+//     }
+
+// }
+
+
+// function createVideoCards() {
+
+//     const videoGrid =
+//         document.getElementById("videoGrid");
+
+//     if (!videoGrid) {
+//         return;
+//     }
+
+//     videoGrid.innerHTML = "";
+
+
+//     latestContent.forEach(function (content, index) {
+
+//         const card =
+//             document.createElement("article");
+
+//         card.className = "video-card";
+
+
+//         const thumbnail =
+//             document.createElement("div");
+
+//         thumbnail.className =
+//             "video-thumbnail";
+
+
+//         const image =
+//             document.createElement("img");
+
+
+//         /*
+//         ============================================
+//         YOUTUBE
+//         ============================================
+//         */
+
+//         if (content.platform === "youtube") {
+
+//             const videoId =
+//                 getYouTubeVideoId(content.url);
+
+//             if (videoId) {
+
+//                 image.src =
+//                     "https://img.youtube.com/vi/" +
+//                     videoId +
+//                     "/maxresdefault.jpg";
+
+//             }
+
+//         }
+
+
+//         /*
+//         ============================================
+//         OTHER SOCIAL MEDIA
+//         ============================================
+//         */
+
+//         else {
+
+//             image.src =
+//                 "lashkars-photos.png";
+
+//         }
+
+
+//         image.alt =
+//             content.title;
+
+//         image.loading =
+//             "lazy";
+
+
+//         /*
+//         ============================================
+//         PLAY / OPEN BUTTON
+//         ============================================
+//         */
+
+//         const button =
+//             document.createElement("button");
+
+//         button.className =
+//             "play-button";
+
+//         button.type =
+//             "button";
+
+
+//         button.innerHTML =
+//             '<i class="fa-solid fa-play"></i>';
+
+
+//         button.addEventListener(
+//             "click",
+//             function (event) {
+
+//                 event.preventDefault();
+
+//                 event.stopPropagation();
+
+
+//                 window.open(
+//                     content.url,
+//                     "_blank",
+//                     "noopener,noreferrer"
+//                 );
+
+//             }
+//         );
+
+
+//         /*
+//         ============================================
+//         PLATFORM LABEL
+//         ============================================
+//         */
+
+//         const platformLabel =
+//             document.createElement("span");
+
+//         platformLabel.className =
+//             "video-duration";
+
+
+//         const platformNames = {
+
+//             youtube: "YOUTUBE",
+
+//             tiktok: "TIKTOK",
+
+//             instagram: "INSTAGRAM",
+
+//             facebook: "FACEBOOK",
+
+//             x: "X",
+
+//             linkedin: "LINKEDIN",
+
+//             threads: "THREADS"
+
+//         };
+
+
+//         platformLabel.textContent =
+//             platformNames[content.platform] ||
+//             "WATCH";
+
+
+//         /*
+//         ============================================
+//         BUILD THUMBNAIL
+//         ============================================
+//         */
+
+//         thumbnail.appendChild(image);
+
+//         thumbnail.appendChild(button);
+
+//         thumbnail.appendChild(platformLabel);
+
+
+//         /*
+//         ============================================
+//         VIDEO INFO
+//         ============================================
+//         */
+
+//         const info =
+//             document.createElement("div");
+
+//         info.className =
+//             "video-info";
+
+
+//         const title =
+//             document.createElement("h3");
+
+//         title.textContent =
+//             content.title;
+
+
+//         const description =
+//             document.createElement("p");
+
+//         description.textContent =
+//             "Latest LASHKARS BOYZ6 content";
+
+
+//         info.appendChild(title);
+
+//         info.appendChild(description);
+
+
+//         /*
+//         ============================================
+//         FINAL CARD
+//         ============================================
+//         */
+
+//         card.appendChild(thumbnail);
+
+//         card.appendChild(info);
+
+//         videoGrid.appendChild(card);
+
+//     });
+
+// }
 /* =========================================================
    AUTOMATIC LATEST CONTENT SYSTEM
 ========================================================= */
@@ -627,6 +880,10 @@ function getYouTubeVideoId(url) {
 }
 
 
+/* =========================================================
+   CREATE LATEST CONTENT CARDS
+========================================================= */
+
 function createVideoCards() {
 
     const videoGrid =
@@ -647,6 +904,10 @@ function createVideoCards() {
         card.className = "video-card";
 
 
+        /* =================================================
+           THUMBNAIL
+        ================================================= */
+
         const thumbnail =
             document.createElement("div");
 
@@ -658,11 +919,9 @@ function createVideoCards() {
             document.createElement("img");
 
 
-        /*
-        ============================================
-        YOUTUBE
-        ============================================
-        */
+        /* =================================================
+           YOUTUBE THUMBNAIL
+        ================================================= */
 
         if (content.platform === "youtube") {
 
@@ -676,16 +935,19 @@ function createVideoCards() {
                     videoId +
                     "/maxresdefault.jpg";
 
+            } else {
+
+                image.src =
+                    "lashkars-photos.png";
+
             }
 
         }
 
 
-        /*
-        ============================================
-        OTHER SOCIAL MEDIA
-        ============================================
-        */
+        /* =================================================
+           OTHER SOCIAL MEDIA
+        ================================================= */
 
         else {
 
@@ -702,11 +964,22 @@ function createVideoCards() {
             "lazy";
 
 
-        /*
-        ============================================
-        PLAY / OPEN BUTTON
-        ============================================
-        */
+        /* =================================================
+           FALLBACK IMAGE
+        ================================================= */
+
+        image.onerror =
+            function () {
+
+                this.src =
+                    "lashkars-photos.png";
+
+            };
+
+
+        /* =================================================
+           OPEN BUTTON
+        ================================================= */
 
         const button =
             document.createElement("button");
@@ -717,10 +990,52 @@ function createVideoCards() {
         button.type =
             "button";
 
+        button.setAttribute(
+            "aria-label",
+            "Open " + content.platform
+        );
+
+
+        /* Platform icons */
+
+        const platformIcons = {
+
+            youtube:
+                "fa-brands fa-youtube",
+
+            tiktok:
+                "fa-brands fa-tiktok",
+
+            instagram:
+                "fa-brands fa-instagram",
+
+            facebook:
+                "fa-brands fa-facebook",
+
+            x:
+                "fa-brands fa-x-twitter",
+
+            linkedin:
+                "fa-brands fa-linkedin",
+
+            threads:
+                "fa-brands fa-threads"
+
+        };
+
+
+        const iconClass =
+            platformIcons[content.platform] ||
+            "fa-solid fa-play";
+
 
         button.innerHTML =
-            '<i class="fa-solid fa-play"></i>';
+            `<i class="${iconClass}"></i>`;
 
+
+        /* =================================================
+           OPEN ORIGINAL POST / VIDEO
+        ================================================= */
 
         button.addEventListener(
             "click",
@@ -729,7 +1044,6 @@ function createVideoCards() {
                 event.preventDefault();
 
                 event.stopPropagation();
-
 
                 window.open(
                     content.url,
@@ -741,11 +1055,9 @@ function createVideoCards() {
         );
 
 
-        /*
-        ============================================
-        PLATFORM LABEL
-        ============================================
-        */
+        /* =================================================
+           PLATFORM LABEL
+        ================================================= */
 
         const platformLabel =
             document.createElement("span");
@@ -775,14 +1087,12 @@ function createVideoCards() {
 
         platformLabel.textContent =
             platformNames[content.platform] ||
-            "WATCH";
+            "OPEN";
 
 
-        /*
-        ============================================
-        BUILD THUMBNAIL
-        ============================================
-        */
+        /* =================================================
+           BUILD THUMBNAIL
+        ================================================= */
 
         thumbnail.appendChild(image);
 
@@ -791,11 +1101,9 @@ function createVideoCards() {
         thumbnail.appendChild(platformLabel);
 
 
-        /*
-        ============================================
-        VIDEO INFO
-        ============================================
-        */
+        /* =================================================
+           VIDEO INFO
+        ================================================= */
 
         const info =
             document.createElement("div");
@@ -823,11 +1131,9 @@ function createVideoCards() {
         info.appendChild(description);
 
 
-        /*
-        ============================================
-        FINAL CARD
-        ============================================
-        */
+        /* =================================================
+           FINAL CARD
+        ================================================= */
 
         card.appendChild(thumbnail);
 
