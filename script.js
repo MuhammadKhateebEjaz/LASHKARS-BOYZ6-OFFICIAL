@@ -72,14 +72,14 @@ const latestContent = [
         title: "LASHKARS BOYZ6 — YouTube Short"
     },
 
-    /*
-    ============================================
-    FUTURE LINKS — EXAMPLES
-    ============================================
+   
+    // ============================================
+    // FUTURE LINKS — EXAMPLES
+    // ============================================ 
 
     {
         platform: "tiktok",
-        url: "YOUR_TIKTOK_VIDEO_LINK",
+        url: "https://www.tiktok.com/@lashkarsboyz6_official_/video/7670620183626632455",
         title: "LASHKARS BOYZ6 — TikTok"
     },
 
