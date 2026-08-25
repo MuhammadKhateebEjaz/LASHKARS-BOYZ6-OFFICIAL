@@ -77,12 +77,17 @@ const latestContent = [
     // FUTURE LINKS — EXAMPLES
     // ============================================ 
 
-    {
-        platform: "tiktok",
-        url: "https://www.tiktok.com/@lashkarsboyz6_official_/video/7670620183626632455",
-        title: "LASHKARS BOYZ6 — TikTok"
-    },
-
+    // {
+    //     platform: "tiktok",
+    //     url: "https://www.tiktok.com/@lashkarsboyz6_official_/video/7670620183626632455",
+    //     title: "LASHKARS BOYZ6 — TikTok"
+    // },
+{
+    platform: "tiktok",
+    url: "https://www.tiktok.com/@lashkarsboyz6_official_/video/7670620183626632455",
+    title: "LASHKARS BOYZ6 — TikTok",
+    image: "tiktok-1.jpg"
+},
     {
         platform: "instagram",
         url: "https://www.instagram.com/reel/C8-Mtk8srxO/",
