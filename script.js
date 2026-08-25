@@ -85,31 +85,31 @@ const latestContent = [
 
     {
         platform: "instagram",
-        url: "YOUR_INSTAGRAM_REEL_LINK",
+        url: "https://www.instagram.com/reel/C8-Mtk8srxO/",
         title: "LASHKARS BOYZ6 — Instagram Reel"
     },
 
     {
         platform: "facebook",
-        url: "YOUR_FACEBOOK_VIDEO_LINK",
+        url: "https://www.facebook.com/share/v/19FqYVbnya/",
         title: "LASHKARS BOYZ6 — Facebook Video"
     },
 
     {
         platform: "x",
-        url: "YOUR_X_VIDEO_LINK",
+        url: "https://x.com/lashkarsboyz6/status/1717438904402690413?s=20",
         title: "LASHKARS BOYZ6 — X Video"
     },
 
-    {
-        platform: "linkedin",
-        url: "YOUR_LINKEDIN_VIDEO_LINK",
-        title: "LASHKARS BOYZ6 — LinkedIn"
-    },
+    // {
+    //     platform: "linkedin",
+    //     url: "YOUR_LINKEDIN_VIDEO_LINK",
+    //     title: "LASHKARS BOYZ6 — LinkedIn"
+    // },
 
     {
         platform: "threads",
-        url: "YOUR_THREADS_LINK",
+        url: "https://www.threads.com/share/Hkuch6iE6/",
         title: "LASHKARS BOYZ6 — Threads"
     }
 
