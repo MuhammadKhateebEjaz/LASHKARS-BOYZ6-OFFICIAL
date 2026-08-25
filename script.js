@@ -50,7 +50,8 @@ const youtubeVideos = [
     "https://youtube.com/shorts/agCsvt6iu9Y",
 
     "https://youtube.com/shorts/zqfyTycfQHU",
-   https://www.tiktok.com/@lashkarsboyz6_official_/video/7670620183626632455
+     "https://www.youtube.com/shorts/zqfyTycfQHU",
+   "https://www.tiktok.com/@lashkarsboyz6_official_/video/7670620183626632455"
 ];
 
 
